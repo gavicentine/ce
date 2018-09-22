@@ -62,11 +62,11 @@ public class UsuarioController
 	 *
 	 * @param request the request
 	 * @return the response entity
-	 * @throws BadRequestException the bad request exception
+	 * @throws Exception the exception
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Boolean> login(@RequestBody UsuarioRequest request) throws BadRequestException
+	public ResponseEntity<Boolean> login(@RequestBody UsuarioRequest request) throws Exception
 	{
 		
 		if (request.getUsuarioDTO() == null ||
@@ -83,6 +83,39 @@ public class UsuarioController
 		
 		
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
+	
+	
+	/**
+	 * Register.
+	 *
+	 * @param request the request
+	 * @return the response entity
+	 * @throws BadRequestException the bad request exception
+	 */
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Boolean> register(@RequestBody UsuarioRequest request) throws BadRequestException
+	{
+		
+		if (request.getUsuarioDTO() == null ||
+				request.getUsuarioDTO().getLogin() == null ||
+				request.getUsuarioDTO().getPassword() == null ||
+				request.getUsuarioDTO().getConfirmPassword() == null ||
+				request.getUsuarioDTO().getName() == null)
+		{
+			throw new BadRequestException("Missing fields.");
+		}
+		
+		
+		if (!request.getUsuarioDTO().getPassword().equals(
+				request.getUsuarioDTO().getConfirmPassword()))
+		{
+			throw new BadRequestException("Password and confirm password don't match.");
+		}
+		
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+		
 	}
 	
 

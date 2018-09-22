@@ -19,6 +19,16 @@ public class BadRequestException extends Exception
 	 */
 	public BadRequestException() 
 	{
-		
+		super();
+	}
+	
+	/**
+	 * Instantiates a new bad request exception.
+	 *
+	 * @param message the message
+	 */
+	public BadRequestException(String message) 
+	{
+		super(message);
 	}
 }
