@@ -1,0 +1,32 @@
+<form #pesqForm="ngForm" (ngSubmit)="onSearch()" class="form-horizontal">
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="conteudoTipos">Tipo:</label>
+    <div class="col-sm-12">
+      
+      <ng-select id="conteudoTipos" name="conteudoTipos" [items]="conteudoTipos" (change)="onChangeConteudoTipo($event)"
+        placeholder="Selecione" bindLabel="nome" [(ngModel)]="pesquisa.conteudoTipos">
+      </ng-select>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="categoria">Categoria:</label>
+    <div class="col-sm-10">
+
+      <ng-select id="categoria" name="categoria" [items]="categorias" (change)="onChangeCategoria($event)"
+          placeholder="Selecione" bindLabel="nome" [(ngModel)]="pesquisa.categorias">
+      </ng-select>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-outline-dark" >Limpar</button>
+      <button type="submit" class="btn btn-outline-success" [disabled]="!pesqForm.form.valid">Pesquisar</button>
+    </div>
+  </div>
+
+</form>

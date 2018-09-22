@@ -1,0 +1,75 @@
+[
+    {
+        "codigo" : 1,
+        "nome" : "Vera Lúcia Marinzeck de Carvalho",
+        "situacao": {
+            "codigo": 2,
+            "nome": "Inativo"
+        },
+        "tipo": {
+            "codigo": 1,
+            "nome": "Autor"
+        }
+        
+    },
+    {
+        "codigo" : 2,
+        "nome" : "Chico Xavier",
+        "situacao": {
+            "codigo": 1,
+            "nome": "Ativo"
+        },
+        "tipo": {
+            "codigo": 1,
+            "nome": "Autor"
+        }
+    },
+    {
+        "codigo" : 3,
+        "nome" : "Jairo Avelar",
+        "situacao": {
+            "codigo": 1,
+            "nome": "Ativo"
+        },
+        "tipo": {
+            "codigo": 1,
+            "nome": "Autor"
+        }
+    },
+    {
+        "codigo" : 4,
+        "nome" : "Antônio Carlos",
+        "tipo": {
+            "codigo": 2,
+            "nome": "Espirito"
+        },
+        "situacao": {
+            "codigo": 1,
+            "nome": "Ativo"
+        }
+    },
+    {
+        "codigo" : 5,
+        "nome" : "Marcelo Rios",
+        "tipo": {
+            "codigo": 2,
+            "nome": "Espirito"
+        },
+        "situacao": {
+            "codigo": 1,
+            "nome": "Ativo"
+        }
+    },
+    {
+        "codigo" : 6,
+        "nome" : "Euripa Alcântra e Co-Autores",
+        "situacao": {
+            "codigo": 1,
+            "nome": "Ativo"
+        },
+        "tipo": {
+            "codigo": 1,
+            "nome": "Autor"
+        }
+    }
+]

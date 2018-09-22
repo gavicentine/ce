@@ -1,0 +1,94 @@
+<app-menu></app-menu>
+
+<div class="jumbotron">
+  <h3>Seja bem-vindo!</h3>
+  <p class="lead">
+    Ao maior site de Conteúdo Espírita Brasileiro. Aqui você encontra Mensagens Espíritas, Trechos do Evangelho e de obras Espíritas,
+    bem como Vídeos e Referências para outras páginas Espíritas.
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-sm-1">
+    <i class="fa fa-angle-left" (click)="showAnterior()" style="font-size:80px;color:slategrey" title="Mensagem Anterior"></i>
+  </div>
+  <div class="col-sm-10">
+    <div class="jumbotron" *ngIf="conteudo">
+        <h1>{{conteudo.titulo}}</h1>
+        <blockquote class="blockquote">
+          {{conteudo.descricao}}
+          <footer class="blockquote-footer text-right">
+            <span *ngIf="conteudo.tipo.codigo != 3">
+                {{conteudo.tipo.nome}}
+            </span>      
+            <span *ngIf="conteudo.livro">
+              <a href="" data-toggle="tooltip" title="Veja mais conteúdo do Livro.">"{{conteudo.livro.titulo}}"</a>
+            </span>
+            <span *ngIf="conteudo.autores">
+              - Autores(as): 
+              <a href="" data-toggle="tooltip" title="Veja mais conteúdo do Autor.">{{conteudo.autores[0].nome}}</a>
+            </span>
+            <span *ngIf="conteudo.espirito">(pelo espírito
+              <a href="" data-toggle="tooltip" title="Veja mais conteúdo do Espírito.">{{conteudo.espirito.nome}}</a>)
+            </span>
+          </footer>
+        </blockquote>
+      </div>
+  </div>
+  <div class="col-sm-1 text-right">
+    <i class="fa fa-angle-right" (click)="showProxima()" style="font-size:80px;color:slategrey" title="Próxima Mensagem"></i>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Mensagens</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Mensagens, Trechos de livros, passagens do Evangelho.</h6>
+        <a class="card-link" routerLink="/mensagens">Acessar</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Vídeos</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Vídeos Espíritas (Palestras,... )</h6>
+        <a class="card-link" routerLink="/videos">Acessar</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Referências</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Web Pages Espíritas, Canais do Youtube e conteúdo nas redes sociais (Facebook, Instagram e Twitter).</h6>
+        <a class="card-link" routerLink="/referencias">Acessar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-inline p-1"></div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Participe</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Faça parte da nossa comunidade. Cadastre-se e envie-nos conteúdo para compartilhar-mos aqui.</h6>
+        <a class="card-link" routerLink="/participe">Acessar</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Sobre</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Quem somos.</h6>
+        <a class="card-link" routerLink="/participe">Acessar</a>
+      </div>
+    </div>
+  </div>
+</div>

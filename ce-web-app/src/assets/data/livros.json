@@ -1,0 +1,38 @@
+[
+    {
+        "codigo" : 1,
+        "titulo" : "Por entre as sombras",
+        "autores" : [{
+            "codigo": 3,
+            "nome": "Jairo Avelar"
+        }],
+        "espirito" : {
+            "codigo": 2,
+            "nome": "Marcelo Rios"
+        }
+    },
+    {
+        "codigo" : 2,
+        "titulo" : "A órfa número sete",
+        "autores" : [{
+            "codigo": 1,
+            "nome": "Vera Lúcia Marinzeck de Carvalho"
+        }],
+        "espirito" : {
+            "codigo": 1,
+            "nome": "Antônio Carlos"
+        }
+    },
+    {
+        "codigo" : 3,
+        "titulo" : "Paulo Ricardo, Mar calmo nunca fez bom Marinheiro",
+        "autores" : [{
+            "codigo": 5,
+            "nome": "Euripa Alcântara e Co-Autores"
+        }],
+        "espirito" : {
+            "codigo": null,
+            "nome": ""
+        }
+    }
+]

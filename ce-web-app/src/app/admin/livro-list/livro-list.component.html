@@ -1,0 +1,42 @@
+<app-menu-admin></app-menu-admin>
+<div class="alert alert-danger" *ngIf="errorMessage">
+  <strong>Error!</strong> {{errorMessage}}
+</div>
+
+<br>
+<div class="row">
+  <div class="col">
+    <h2>Livros</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table-secondary">
+          <tr>
+            <th>Código</th>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Pelo Espírito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let livro of livros" (click)=onSelect(livro)>
+            <td>{{livro.codigo}}</td>
+            <td>{{livro.titulo}}</td>
+            <td>{{livro.autores[0].nome}}</td>
+            <td>{{livro.espirito.nome}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-outline-primary" (click)="onCreate();">Novo</button>
+    </div>
+
+  </div>
+</div>

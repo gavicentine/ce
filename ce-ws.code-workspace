@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "ce-api-ws"
+		},
+		{
+			"path": "ce-web-app"
+		},
+		{
+			"path": "dbms"
+		},
+		{
+			"path": "docs"
+		}
+	]
+}

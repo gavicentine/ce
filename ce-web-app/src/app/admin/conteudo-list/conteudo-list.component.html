@@ -1,0 +1,38 @@
+<app-menu-admin></app-menu-admin>
+<div class="row">
+  <div class="col">
+    <br>
+    <h2>Conteúdo</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table-secondary">
+          <tr>
+            <th>Código</th>
+            <th>Tipo</th>
+            <th>Titulo</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let conteudo of listaConteudo" (click)=onSelect(conteudo)>
+            <td>{{conteudo.codigo}}</td>
+            <td>{{conteudo.tipo.nome}}</td>
+            <td>{{conteudo.titulo}}</td>
+            <td>{{conteudo.situacao.nome}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-outline-primary" (click)="onCreate();">Novo</button>
+    </div>
+
+  </div>
+</div>

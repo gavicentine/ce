@@ -1,0 +1,133 @@
+<app-menu></app-menu>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-lg-6">
+
+      <br>
+      <h2 class="text-center">Quero me cadastrar !</h2>
+      <br>
+
+      <div id="accordion">
+
+        <!--
+        <div class="card">
+          <div class="card-header bg-primary">
+            <a class="card-link text-white" data-toggle="collapse" href="#collapse1">
+              Cadastrar com o facebook
+            </a>
+          </div>
+          <div id="collapse1" class="collapse show" data-parent="#accordion">
+            <div class="card-body bg-light">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="email" class="form-control" id="emailface" name="emailface" placeholder="Informe seu email">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-12">
+                  <a class="btn btn-outline-success" href="/adm">Cadastrar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      -->
+
+        <div class="card">
+
+          <div class="card-header bg-primary">
+            <a class="card-link text-white" data-toggle="collapse" href="#collapse2">
+              Cadastrar usando email
+            </a>
+          </div>
+
+          <div id="collapse2" class="collapse show" data-parent="#accordion">
+            <div class="card-body bg-light">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Informe seu nome">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Informe seu email">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="password" class="form-control" id="senha1" name="senha1" placeholder="Informe uma senha">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="password" class="form-control" id="senha2" name="senha2" placeholder="Confirme sua senha">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-12">
+                  <a class="btn btn-outline-success" href="/adm">Cadastrar</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+      <br>
+      <h2 class="text-center">Já sou cadastrado</h2>
+      <br>
+
+      <!-- <button class="btn btn-primary btn-lg">Acessar com o facebook</button> -->
+
+      <div id="accordion2">
+        <div class="card">
+          <div class="card-header bg-primary">
+            <a class="card-link text-white" data-toggle="collapse" href="#collapse3">
+              Acessar usando email e senha
+            </a>
+          </div>
+          <div id="collapse3" class="collapse show" data-parent="#accordion2">
+            <div class="card-body bg-light">
+              
+              <form #loginForm="ngForm" (ngSubmit)="login()" class="form-horizontal">
+
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nome3" name="nome3" [(ngModel)]="usuario.login" placeholder="Informe seu email" required appAutofocus>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="senha3" name="senha3"  [(ngModel)]="usuario.password" placeholder="Digite sua senha" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-outline-success" [disabled]="!loginForm.form.valid">Entrar</button>
+                    <!-- <a class="btn btn-outline-success" href="/adm">Entrar</a>-->
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

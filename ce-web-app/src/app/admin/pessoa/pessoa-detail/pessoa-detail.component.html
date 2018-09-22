@@ -1,0 +1,60 @@
+<app-menu-admin></app-menu-admin>
+<div class="container">
+
+  <br>
+  <div class="row">
+    <div class="col">
+      <h2>Pessoas</h2>
+    </div>
+  </div>
+
+  <form #autorForm="ngForm" (ngSubmit)="salvar()" class="form-horizontal">
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="codigo">Codigo:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="codigo" name="codigo" [(ngModel)]="pessoa.codigo" #name="ngModel" disabled>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="titulo">Tipo:</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="tipo" name="tipo" [(ngModel)]="pessoa.tipo.codigo" required 
+        (change)="onChangeTipo($event)">
+          <option *ngFor="let tipo of tipos" [value]="tipo.codigo">{{tipo.nome}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="nome">Nome:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="pessoa.nome" placeholder="Informe o nome"
+          #name="ngModel" required appAutofocus>
+        <p [hidden]="name.valid || name.pristine" style="color:red">
+          Campo Obrigatório.
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="titulo">Situação:</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="situacao" name="situacao" [(ngModel)]="pessoa.situacao.codigo" required 
+        (change)="onChangeSituacao($event)">
+          <option *ngFor="let sit of situacoes" [value]="sit.codigo">{{sit.nome}}</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" class="btn btn-outline-dark" (click)="voltar()">Voltar</button>
+        <button type="submit" class="btn btn-outline-success" [disabled]="!autorForm.form.valid">Salvar</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

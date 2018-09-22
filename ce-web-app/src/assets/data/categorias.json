@@ -1,0 +1,63 @@
+[
+    {
+        "codigo" : 1,
+        "nome" : "Caridade"
+    },
+    {
+        "codigo" : 2,
+        "nome" : "Família"
+    },
+    {
+        "codigo" : 3,
+        "nome" : "Reencarnação"
+    },
+    {
+        "codigo" : 4,
+        "nome" : "Aborto"
+    },
+    {
+        "codigo" : 5,
+        "nome" : "Suicídio"
+    },
+    {
+        "codigo" : 6,
+        "nome" : "Dinheiro"
+    },
+    {
+        "codigo" : 7,
+        "nome" : "Riqueza"
+    },
+    {
+        "codigo" : 8,
+        "nome" : "Crise"
+    },
+    {
+        "codigo" : 9,
+        "nome" : "Mágoa"
+    },
+    {
+        "codigo" : 10,
+        "nome" : "Espiritismo"
+    },
+    {
+        "codigo" : 11,
+        "nome" : "Terra"
+    },
+    {
+        "codigo" : 12,
+        "nome" : "Regeneração"
+    },
+    {
+        "codigo" : 13,
+        "nome" : "Expiação"
+    },
+    {
+        "codigo" : 14,
+        "nome" : "Prece"
+    },
+    {
+        "codigo" : 15,
+        "nome" : "Necessidade"
+    }
+
+]

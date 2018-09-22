@@ -1,0 +1,211 @@
+[
+  {
+    "codigo": 1,
+    "tipo": {
+      "codigo": 2,
+      "nome": "Trecho do Livro"
+    },
+    "situacao": {
+      "codigo": 1,
+      "nome": "Ativo"
+    },
+    "categorias": [
+      {
+        "codigo": 1,
+        "nome": "Dinheiro"
+      },
+      {
+        "codigo": 2,
+        "nome": "Riqueza"
+      }
+    ],
+    "titulo": "O que possuímos ?",
+    "descricao":
+      "Nada. Desculpe, meu leitor, ninguem mais do que eu sabe bem que este 'nada' dói e agride, mas é a realidade. Quanto mais mergulhamos na ideia de poder, de posse, de ter, da propriedade, e nos achamos donos de, ou propriedade de, mais avançamos rumo à nadificação interior.",
+    "autores": [{
+      "codigo": 1,
+      "nome": "Jairo Avellar"
+    }],
+    "espirito": {
+      "codigo": 1,
+      "nome": "Marcelo Rios"
+    },
+    "livro": {
+      "codigo": 1,
+      "titulo": "Por entre as sombras"
+    }
+  },
+  {
+    "codigo": 2,
+    "tipo": {
+      "codigo": 1,
+      "nome": "Mensagem"
+    },
+    "situacao": {
+      "codigo": 1,
+      "nome": "Ativo"
+    },
+    "categorias": [
+      {
+        "codigo": 1,
+        "nome": "Dinheiro"
+      },
+      {
+        "codigo": 2,
+        "nome": "Riqueza"
+      }
+    ],
+    "titulo": "",
+    "descricao":
+      "Conheci homens pobres. Tão pobres, que nada tinham além do dinheiro...",
+    "autores": [{
+      "codigo": 1,
+      "nome": "Irmã Dulce"
+    }]
+  },
+  {
+    "codigo": 3,
+    "tipo": {
+      "codigo": 1,
+      "nome": "Mensagem"
+    },
+    "situacao": {
+      "codigo": 1,
+      "nome": "Ativo"
+    },
+    "categorias": [
+      {
+        "codigo": 3,
+        "nome": "Crise"
+      },
+      {
+        "codigo": 4,
+        "nome": "Mágoas"
+      }
+    ],
+    "titulo": "",
+    "descricao":
+      "Se o momento é de crise, não te perturbes, segue... Serve e ora, esperando que suceda o melhor. Queixas, gritos e mágoas são golpes em ti mesmo. Silencia e abençoa, a verdade tem voz...",
+    "autores": [{
+      "codigo": 1,
+      "nome": "Chico Xavier"
+    }]
+  },
+  {
+    "codigo": 4,
+    "tipo": {
+      "codigo": 2,
+      "nome": "Trecho do Livro"
+    },
+    "situacao": {
+      "codigo": 1,
+      "nome": "Ativo"
+    },
+    "categorias": [
+      {
+        "codigo": 3,
+        "nome": "Espiritismo"
+      }
+    ],
+    "titulo": "Dia do Espiritismo (18 de abril)",
+    "descricao":
+      "Pelo Espiritismo, o homem sabe de onde vem e para onde vai, porque sofre temporariamente e vê por toda a parte a justiça de Deus. Sabe que a alma progride sem cessar, através de uma série de existências sucessivas, até atingir o grau de perfeição que pode aproximá-la de Deus.",
+    "autores": [{
+      "codigo": 2,
+      "nome": "Allan Kardec"
+    }],
+    "livro": {
+      "codigo": 1,
+      "titulo": "A Gênese"
+    }
+  },
+  {
+    "codigo": 5,
+    "tipo": {
+      "codigo": 2,
+      "nome": "Trecho do Livro"
+    },
+    "situacao": {
+      "codigo": 1,
+      "nome": "Ativo"
+    },
+    "categorias": [
+      {
+        "codigo": 4,
+        "nome": "Terra"
+      },
+      {
+        "codigo": 5,
+        "nome": "Regeneração"
+      },
+      {
+        "codigo": 6,
+        "nome": "Expiação"
+      }
+    ],
+    "titulo": "Planeta Terra (de expiação para regeneração)",
+    "descricao":
+      "É sabido, no meio espírita, que a Terra está próxima de se transformar em mundo de regeneração, ao invés de expiação. O que acontecerá com os espíritos que ficarem pra trás? Quando os alunos são rebeldes e perversos, a escola toma providências, ocorrendo com frequência que sejam reprovados, suspensos ou até mesmo expulsos da instituição de ensino. O mesmo processo ocorre em termos de coletividade de um planeta. Chegados a um grau de maturidade, os planetas também promovem avaliações de seus habitantes, destinando rebeldes, perversos ou aqueles que não se adaptem aos propósitos de progresso e harmonia, a outras instituições de ensino e aprendizado, que são outros planetas. E, claro, que perderão determinadas conquistas como consequência de sua rebeldia, perversão ou desobediência. Nunca como castigo, mas sempre como consequência. Os espíritos ociosos, indiferentes, omissos, rebeldes, egoístas, corruptos e causadores de confusão serão transferidos para outras moradas planetárias, inferiores àquela que habitavam, para reeducação necessária, a fim de que aprendam a respeitar a coletividade e a si mesmos. É um processo difícil porque irão para planetas bem mais atrasados que a Terra, onde todas as conquistas morais, tecnológicas, sociais e materiais estão distantes ainda de acontecer. E aí, a Sabedoria Divina os situa como alavancas de progresso no planeta onde habitam espíritos iniciantes da evolução, pois levam com eles, embora latente, os conhecimentos já acumulados pelo estágio da Terra.",
+    "autores": [{
+      "codigo": 3,
+      "nome": "Orson Peter Carrara"
+    }],
+    "livro": {
+      "codigo": 1,
+      "titulo": "Guia da Doutrina Espírita"
+    }
+  },
+  {
+    "codigo": 6,
+    "tipo": {
+      "codigo": 3,
+      "nome": "Trecho do Evangelho"
+    },
+    "situacao": {
+      "codigo": 1,
+      "nome": "Ativo"
+    },
+    "categorias": [
+      {
+        "codigo": 7,
+        "nome": "Prece"
+      }
+    ],
+    "titulo": "Pedi e Obterei - Eficácia da Prece",
+    "descricao":
+      "Seria ilógico concluir-se, desta máxima: “Aquilo que pedirdes pela prece vos será dado”, que basta pedir para obter, e injusto acusar a Providência se ela não atender a todos os pedidos que lhe fazem, porque ela sabe melhor do que nós o que nos convém. Assim procede ao pai prudente, que recusa ao filho o que lhe seria prejudicial. O homem, geralmente, só vê o presente; mas, se o sofrimento é útil para a sua felicidade futura, Deus o deixará sofrer, como o cirurgião deixa o doente sofrer a operação que deve curá-lo. O que Deus lhe concederá, se pedir com confiança, é a coragem, a paciência e a resignação. E o que ainda lhe concederá, são os meios de se livrar das dificuldades, com a ajuda das ideias que lhe serão sugeridas pelos Bons Espíritos, de maneira que lhe restará o mérito da ação. Deus assiste aos que se ajudam a si mesmos, segundo a máxima: “Ajuda-te e o céu te ajudará”, e não aos que tudo esperam do socorro alheio, sem usar as próprias faculdades. Mas, na maioria das vezes, preferimos ser socorridos por um milagre, sem nada fazermos",
+    "autores": [{
+      "codigo": 2,
+      "nome": "Allan Kardec"
+    }],
+    "livro": {
+      "codigo": 1,
+      "titulo": "Evangelho Segundo o Espiritismo",
+      "capitulo": "Cap.27"
+    }
+  },
+  {
+    "codigo": 7,
+    "tipo": {
+      "codigo": 1,
+      "nome": "Mensagem"
+    },
+    "situacao": {
+      "codigo": 1,
+      "nome": "Ativo"
+    },
+    "categorias": [
+      {
+        "codigo": 8,
+        "nome": "Necessidade"
+      }
+    ],
+    "titulo": "",
+    "descricao":
+      "Nem sempre terás o que desejas, mas enquanto estiveres ajudando aos outros encontrarás os recursos de que precisas.",
+    "autores": [{
+      "codigo": 1,
+      "nome": "Chico Xavier"
+    }]
+  }
+]

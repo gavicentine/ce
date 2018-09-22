@@ -1,0 +1,12 @@
+{
+  "codigo": 1,
+  "titulo": "Por entre as sombras",
+  "autores": [{
+    "codigo": 3,
+    "nome": "Jairo Avelar"
+  }],
+  "espirito": {
+    "codigo": 2,
+    "nome": "Marcelo Rios"
+  }
+}
