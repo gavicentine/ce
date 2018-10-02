@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,8 +34,9 @@ public class UsuarioController
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public Usuario fetchByLogin(@RequestParam(value = "login", required = true) String login)	
-	{	
+	public Usuario findByLogin(@RequestParam(value = "login", required = true) String login)	
+	{
+		System.out.println("### find user by login");
 		if (login != null && login.equals("gavicentine")) 
 		{
 			return new Usuario("gavicentine", "Guilherme");
@@ -52,8 +52,9 @@ public class UsuarioController
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody	
-	public List<Usuario> fetchAll()
+	public List<Usuario> findAll()
 	{
+		System.out.println("### find all users");
 		return this.fetchAllUsuarios();
 	}
 	
@@ -69,6 +70,8 @@ public class UsuarioController
 	@ResponseBody
 	public ResponseEntity<Boolean> login(@RequestBody UsuarioRequest request) throws Exception
 	{
+		
+		System.out.println("### login");
 		
 		if (request.getUsuarioDTO() == null ||
 				request.getUsuarioDTO().getLogin() == null ||
@@ -98,6 +101,8 @@ public class UsuarioController
 	@ResponseBody
 	public ResponseEntity<Boolean> register(@RequestBody UsuarioRequest request) throws BadRequestException
 	{
+		
+		System.out.println("### register");
 		
 		if (request.getUsuarioDTO() == null ||
 				request.getUsuarioDTO().getLogin() == null ||
