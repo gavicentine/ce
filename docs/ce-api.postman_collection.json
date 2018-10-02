@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "1d43375d-26aa-4192-8475-393a944d0927",
+		"name": "ce-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find user by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJETSIsImN1c3RvbWVyIjoiQUNNRSIsInJvbGVzIjoiUk9MRV9ETV9BRE1JTnxST0xFX0RNX1NFUlZJQ0VfRUxFQ1RSSUN8Uk9MRV9ETV9TRVJWSUNFX0dBU3xST0xFX0RNX1NFUlZJQ0VfV0FURVIiLCJpYXQiOjE1Mzg1MTEwMjksImV4cCI6MTUzODUxMTIwOX0.hMTFpYZltLEvbkK2gie6RPj_r8tj4yV43J2-RkwX7VJVO03MhRkDvrtTZIQ6ITsxgc4uP1j0ve6LGiw9VuxLkw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"usuarioSearch\":\n  {\n    \"login\": \"gavicentine\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user?login=gavicentine",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "gavicentine"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find all users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJETSIsImN1c3RvbWVyIjoiQUNNRSIsInJvbGVzIjoiUk9MRV9ETV9BRE1JTnxST0xFX0RNX1NFUlZJQ0VfRUxFQ1RSSUN8Uk9MRV9ETV9TRVJWSUNFX0dBU3xST0xFX0RNX1NFUlZJQ0VfV0FURVIiLCJpYXQiOjE1Mzg1MTEwMjksImV4cCI6MTUzODUxMTIwOX0.hMTFpYZltLEvbkK2gie6RPj_r8tj4yV43J2-RkwX7VJVO03MhRkDvrtTZIQ6ITsxgc4uP1j0ve6LGiw9VuxLkw"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJETSIsImN1c3RvbWVyIjoiQUNNRSIsInJvbGVzIjoiUk9MRV9ETV9BRE1JTnxST0xFX0RNX1NFUlZJQ0VfRUxFQ1RSSUN8Uk9MRV9ETV9TRVJWSUNFX0dBU3xST0xFX0RNX1NFUlZJQ0VfV0FURVIiLCJpYXQiOjE1Mzg1MDU0ODgsImV4cCI6MTUzODUwNTY2OH0.nZmvBALPQ7Wy9O2WWYc26DaPw6gUl1q9fDLUpXxTsEYjJdHy9-4Lagrgkyzg3FDml6KkXEiaZRhbemjj_YZ9WQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuarioDTO\": \n\t{\n\t\t\"login\"\t: \"gavicentine\",\n\t\t\"password\" : \"password\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJETSIsImN1c3RvbWVyIjoiQUNNRSIsInJvbGVzIjoiUk9MRV9ETV9BRE1JTnxST0xFX0RNX1NFUlZJQ0VfRUxFQ1RSSUN8Uk9MRV9ETV9TRVJWSUNFX0dBU3xST0xFX0RNX1NFUlZJQ0VfV0FURVIiLCJpYXQiOjE1Mzg1MTEwMjksImV4cCI6MTUzODUxMTIwOX0.hMTFpYZltLEvbkK2gie6RPj_r8tj4yV43J2-RkwX7VJVO03MhRkDvrtTZIQ6ITsxgc4uP1j0ve6LGiw9VuxLkw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuarioDTO\": \n\t{\n\t\t\"login\"\t: \"gavicentine\",\n\t\t\"password\" : \"password1\",\n\t\t\"name\" : \"guilherme\",\n\t\t\"confirmPassword\" : \"password1\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authenticate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"app\": \"DM\",\n\t\"customer\": \"ACME\",\n\t\"roles\": \"ROLE_DM_ADMIN|ROLE_DM_SERVICE_ELECTRIC|ROLE_DM_SERVICE_GAS|ROLE_DM_SERVICE_WATER\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/auth/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
