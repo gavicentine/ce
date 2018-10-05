@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "72c75a45-89b4-4b33-8e4e-a23341da94f9",
+		"name": "ce-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find all users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJuYW1lIjpudWxsLCJsb2dpbiI6ImdhdmljZW50aW5lIiwiZXhwIjoxNTM4NjgyNTE4LCJpYXQiOjE1Mzg2ODIzMzh9.m7TEJGP5oZnZX8NeCG2xjJAO1it--ToL_oHUcrAeNsVJ1MVmQGfS1UvSjgLf4Dqv-G0V8AlVrmiYSXr4LsKS3g"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJuYW1lIjpudWxsLCJsb2dpbiI6ImdhdmljZW50aW5lIiwiZXhwIjoxNTM4NjgyNTE4LCJpYXQiOjE1Mzg2ODIzMzh9.m7TEJGP5oZnZX8NeCG2xjJAO1it--ToL_oHUcrAeNsVJ1MVmQGfS1UvSjgLf4Dqv-G0V8AlVrmiYSXr4LsKS3g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"usuarioSearch\":\n  {\n    \"login\": \"gavicentine\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user?login=gavicentine",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "gavicentine"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJETSIsImN1c3RvbWVyIjoiQUNNRSIsInJvbGVzIjoiUk9MRV9ETV9BRE1JTnxST0xFX0RNX1NFUlZJQ0VfRUxFQ1RSSUN8Uk9MRV9ETV9TRVJWSUNFX0dBU3xST0xFX0RNX1NFUlZJQ0VfV0FURVIiLCJpYXQiOjE1Mzg1MDU0ODgsImV4cCI6MTUzODUwNTY2OH0.nZmvBALPQ7Wy9O2WWYc26DaPw6gUl1q9fDLUpXxTsEYjJdHy9-4Lagrgkyzg3FDml6KkXEiaZRhbemjj_YZ9WQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\": \n\t{\n\t\t\"login\"\t: \"gavicentine\",\n\t\t\"password\" : \"password\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJETSIsImN1c3RvbWVyIjoiQUNNRSIsInJvbGVzIjoiUk9MRV9ETV9BRE1JTnxST0xFX0RNX1NFUlZJQ0VfRUxFQ1RSSUN8Uk9MRV9ETV9TRVJWSUNFX0dBU3xST0xFX0RNX1NFUlZJQ0VfV0FURVIiLCJpYXQiOjE1Mzg1MTEwMjksImV4cCI6MTUzODUxMTIwOX0.hMTFpYZltLEvbkK2gie6RPj_r8tj4yV43J2-RkwX7VJVO03MhRkDvrtTZIQ6ITsxgc4uP1j0ve6LGiw9VuxLkw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuarioDTO\": \n\t{\n\t\t\"login\"\t: \"gavicentine\",\n\t\t\"password\" : \"password1\",\n\t\t\"name\" : \"guilherme\",\n\t\t\"confirmPassword\" : \"password1\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ce-api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
