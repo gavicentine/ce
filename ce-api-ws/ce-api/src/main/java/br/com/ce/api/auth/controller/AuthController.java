@@ -11,6 +11,8 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,12 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.ce.api.auth.config.TokenManager;
 import br.com.ce.api.auth.model.AuthResponse;
 import br.com.ce.api.auth.model.AuthResponse.Status;
+import br.com.ce.api.exception.BadRequestException;
+import br.com.ce.api.usuario.model.UsuarioRequest;
 
 @RestController
 @RequestMapping(value = "/auth")
-public class AuthJWTController
+public class AuthController
 {
-	private static final Logger LOG = LoggerFactory.getLogger(AuthJWTController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AuthController.class);
 
 	@Resource
 	private TokenManager tokenManager;
@@ -55,24 +59,24 @@ public class AuthJWTController
 
 		// Add here logic to authenticate and guarantee that credentials are valid
 
-		return new AuthResponse(tokenManager.generateToken(credentials));
+		return new AuthResponse(tokenManager.generate(credentials));
 	}
 
-	@RequestMapping(value = "/refresh", method = RequestMethod.POST)
-	@ResponseBody
-	public AuthResponse refresh(@RequestParam String expiredToken)
-	{
-		LOG.info("Refreshing token");
-		if (tokenManager.isTokenExpired(expiredToken))
-		{
-			return new AuthResponse(tokenManager.refreshToken(expiredToken));
-		}
-
-		AuthResponse response = new AuthResponse();
-		response.setStatus(Status.ERROR);
-		response.setMessage("Token is invalid");
-		return response;
-	}
+//	@RequestMapping(value = "/refresh", method = RequestMethod.POST)
+//	@ResponseBody
+//	public AuthResponse refresh(@RequestParam String expiredToken)
+//	{
+//		LOG.info("Refreshing token");
+//		if (tokenManager.isTokenExpired(expiredToken))
+//		{
+//			return new AuthResponse(tokenManager.refreshToken(expiredToken));
+//		}
+//
+//		AuthResponse response = new AuthResponse();
+//		response.setStatus(Status.ERROR);
+//		response.setMessage("Token is invalid");
+//		return response;
+//	}
 
 	@RequestMapping(value = "/expired", method = RequestMethod.POST)
 	@ResponseBody

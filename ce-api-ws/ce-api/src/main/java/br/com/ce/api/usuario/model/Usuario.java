@@ -12,11 +12,6 @@ public class Usuario
 	/** The name. */
 	private String name;
 	
-	/** The password hash. */
-	private String passwordHash;
-	
-	/** The password salt. */
-	private String passwordSalt;
 
 	/**
 	 * Instantiates a new usuario.
@@ -77,50 +72,7 @@ public class Usuario
 	public void setLogin(String login)
 	{
 		this.login = login;
-	}
-
-	/**
-	 * Gets the password hash.
-	 *
-	 * @return the password hash
-	 */
-	public String getPasswordHash() {
-		return passwordHash;
-	}
-
-	/**
-	 * Sets the password hash.
-	 *
-	 * @param passwordHash the new password hash
-	 */
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
-
-	/**
-	 * Gets the password salt.
-	 *
-	 * @return the password salt
-	 */
-	public String getPasswordSalt() {
-		return passwordSalt;
-	}
-
-	/**
-	 * Sets the password salt.
-	 *
-	 * @param passwordSalt the new password salt
-	 */
-	public void setPasswordSalt(String passwordSalt) {
-		this.passwordSalt = passwordSalt;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Usuario [getName()=" + getName() + ", getLogin()=" + getLogin() + "]";
-	}
+	}	
+	
 
 }

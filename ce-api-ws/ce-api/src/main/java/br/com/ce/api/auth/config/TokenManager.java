@@ -19,6 +19,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -31,14 +32,14 @@ public class TokenManager
 	/** The Constant LOG. */
 	private static final Logger LOG = LoggerFactory.getLogger(TokenManager.class);
 	
-	/** The Constant ROLES. */
-	private static final String ROLES = "roles";
-	
-	/** The Constant CUSTOMER. */
-	private static final String CUSTOMER = "customer";
-	
-	/** The Constant APP. */
-	private static final String APP = "app";
+//	/** The Constant ROLES. */
+//	private static final String ROLES = "roles";
+//	
+//	/** The Constant CUSTOMER. */
+//	private static final String CUSTOMER = "customer";
+//	
+//	/** The Constant APP. */
+//	private static final String APP = "app";
 
 	/** The secret key factory. */
 	@Resource
@@ -54,7 +55,7 @@ public class TokenManager
 	 * @param credentials the credentials
 	 * @return the string
 	 */
-	public String generateToken(Map<String, Object> credentials)
+	public String generate(Map<String, Object> claims)
 	{
 		
 		Calendar calendar = Calendar.getInstance();
@@ -69,29 +70,67 @@ public class TokenManager
 		
 
 		return Jwts.builder()
-				.setClaims(credentials)
+				.setClaims(claims)
 				.setIssuedAt(now)
 				.setExpiration(exp)
 				.signWith(SignatureAlgorithm.HS512, secretKeyFactory.getHS512SecretBytes())
 				.compact();
 	}
 
-	/**
-	 * Refresh token.
-	 *
-	 * @param tokenExpired the token expired
-	 * @return the string
-	 */
-	public String refreshToken(String tokenExpired)
-	{
-		Map<String, Object> credentialsFromToken = fetchCredentialsFromExpiredToken(tokenExpired);
-		Map<String, Object> credentials = new HashMap<>();
-		credentials.put(APP, credentialsFromToken.get(APP));
-		credentials.put(CUSTOMER, credentialsFromToken.get(CUSTOMER));
-		credentials.put(ROLES, credentialsFromToken.get(ROLES));
-		return generateToken(credentials);
-	}
+	
+//	/**
+//	 * Refresh token.
+//	 *
+//	 * @param tokenExpired the token expired
+//	 * @return the string
+//	 */
+//	
+//	public String refreshToken(String tokenExpired)
+//	{
+//		Map<String, Object> credentialsFromToken = fetchCredentialsFromExpiredToken(tokenExpired);
+//		Map<String, Object> credentials = new HashMap<>();
+//		credentials.put(APP, credentialsFromToken.get(APP));
+//		credentials.put(CUSTOMER, credentialsFromToken.get(CUSTOMER));
+//		credentials.put(ROLES, credentialsFromToken.get(ROLES));
+//		return generateToken(credentials);
+//	}
 
+
+	public String validate(String token)
+	{
+				
+		if ((token == null) || token.isEmpty())
+		{
+			return "Token is null or empty.";
+		}
+
+		try
+		{
+			// Try parser token, if it can get then it is valid
+			Jws<Claims> claims = Jwts.parser()
+					.setSigningKeyResolver(secretKeyFactory.getSigningKeyResolver())
+					.parseClaimsJws(token);
+			
+			return "";
+		}
+		catch (SignatureException e)
+		{
+			LOG.error("Invalid token.", e);
+			return "Invalid token.";
+		}
+		catch (ExpiredJwtException e)
+		{
+			LOG.error("Token is expired.", e);
+			return "Token is expired.";
+		}
+		catch (JwtException e)
+		{
+			LOG.error("Token not valid.", e);
+			return "Token not valid.";
+		}
+		
+	}
+	
 
 	/**
 	 * Fetch credentials.
@@ -113,7 +152,13 @@ public class TokenManager
 			Jws<Claims> claims = Jwts.parser()
 					.setSigningKeyResolver(secretKeyFactory.getSigningKeyResolver())
 					.parseClaimsJws(token);
+			
 			return claims.getBody();
+		}
+		catch (SignatureException e)
+		{
+			LOG.error("Invalid token.", e);
+			return null;
 		}
 		catch (ExpiredJwtException e)
 		{

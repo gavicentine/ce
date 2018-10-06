@@ -10,8 +10,8 @@ public class UsuarioRequest
 	/** The usuario. */
 	private UsuarioSearch usuarioSearch;
 	
-	/** The usuario DTO. */
-	private UsuarioDTO usuarioDTO;
+	/** The usuario. */
+	private UsuarioDTO usuario;
 
 	/**
 	 * Instantiates a new usuario request.
@@ -52,33 +52,24 @@ public class UsuarioRequest
 		this.usuarioSearch = usuarioSearch;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * Gets the usuario.
+	 *
+	 * @return the usuario
 	 */
-	@Override
-	public String toString()
-	{
-		return "UsuarioRequest [getUsuarioSearch()=" + this.getUsuarioSearch()+
-				", getUsuarioDTO()=" + this.getUsuarioDTO() + ", toString()=" + super.toString()
-				+ "]";
+	public UsuarioDTO getUsuario() {
+		return usuario;
 	}
 
 	/**
-	 * Gets the usuario DTO.
+	 * Sets the usuario.
 	 *
-	 * @return the usuario DTO
+	 * @param usuario the new usuario
 	 */
-	public UsuarioDTO getUsuarioDTO() {
-		return usuarioDTO;
+	public void setUsuario(UsuarioDTO usuario) {
+		this.usuario = usuario;
 	}
 
-	/**
-	 * Sets the usuario DTO.
-	 *
-	 * @param usuarioDTO the new usuario DTO
-	 */
-	public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
-		this.usuarioDTO = usuarioDTO;
-	}
+
 
 }

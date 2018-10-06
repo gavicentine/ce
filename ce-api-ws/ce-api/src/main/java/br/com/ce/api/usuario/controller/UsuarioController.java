@@ -1,8 +1,14 @@
 package br.com.ce.api.usuario.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ce.api.auth.config.TokenManager;
+import br.com.ce.api.base.model.BaseResponse.Status;
 import br.com.ce.api.exception.BadRequestException;
 import br.com.ce.api.usuario.model.Usuario;
 import br.com.ce.api.usuario.model.UsuarioRequest;
+import br.com.ce.api.usuario.model.UsuarioResponse;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -25,6 +34,100 @@ import br.com.ce.api.usuario.model.UsuarioRequest;
 public class UsuarioController
 {
 
+	/** The Constant LOG. */
+	private static final Logger LOG = LoggerFactory.getLogger(UsuarioController.class);
+
+	/** The Constant STR_NAME. */
+	private static final String STR_NAME = "name";
+
+	/** The Constant STR_LOGIN. */
+	private static final String STR_LOGIN = "login";
+
+	/** The token manager. */
+	@Resource
+	private TokenManager tokenManager;
+	
+	
+	/**
+	 * Login.
+	 *
+	 * @param request the request
+	 * @return the response entity
+	 * @throws Exception the exception
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@ResponseBody
+	public UsuarioResponse login(@RequestBody UsuarioRequest request) throws Exception
+	{
+		
+		LOG.debug("### LOGIN ###");
+		
+		if (request.getUsuario() == null ||
+				request.getUsuario().getLogin() == null ||
+				request.getUsuario().getPassword() == null)
+		{
+			throw new BadRequestException("Missing fields.");
+		}
+		
+		//usuarioService.find();
+		
+		//good login
+		if (request.getUsuario().getLogin().equals("gavicentine"))
+		{
+			Map<String, Object> claims = new HashMap<>();
+			claims.put(STR_LOGIN, request.getUsuario().getLogin());
+			claims.put(STR_NAME, request.getUsuario().getName());
+		
+			//return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+			return new UsuarioResponse(Status.SUCCESS, tokenManager.generate(claims));
+		}
+		
+		return new UsuarioResponse(Status.ERROR, "");
+	}	
+	
+	/**
+	 * Register.
+	 *
+	 * @param request the request
+	 * @return the response entity
+	 * @throws BadRequestException the bad request exception
+	 */
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@ResponseBody
+	public UsuarioResponse register(@RequestBody UsuarioRequest request) throws BadRequestException
+	{
+		
+		LOG.debug("### REGISTER ###");
+		
+		if (request.getUsuario() == null ||
+				request.getUsuario().getLogin() == null ||
+				request.getUsuario().getPassword() == null ||
+				request.getUsuario().getConfirmPassword() == null ||
+				request.getUsuario().getName() == null)
+		{
+			throw new BadRequestException("Missing fields.");
+		}
+		
+		//verificar se usuario ja existe no banco
+		if (request.getUsuario().getLogin().equals("gavicentine"))
+		{
+			throw new BadRequestException("User "+ request.getUsuario().getLogin() +" already exists.");
+		}
+		
+		if (!request.getUsuario().getPassword().equals(
+				request.getUsuario().getConfirmPassword()))
+		{
+			throw new BadRequestException("Password and confirm password don't match.");
+		}
+		
+		//registrar usuario
+		//usuarioService.save();
+		
+		//return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+		return new UsuarioResponse(Status.SUCCESS, "");
+		
+	}
+
 	
 	/**
 	 * Fetch by login.
@@ -34,15 +137,15 @@ public class UsuarioController
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public Usuario findByLogin(@RequestParam(value = "login", required = true) String login)	
+	public UsuarioResponse findByLogin(@RequestParam(value = STR_LOGIN, required = true) String login)	
 	{
 		System.out.println("### find user by login");
 		if (login != null && login.equals("gavicentine")) 
 		{
-			return new Usuario("gavicentine", "Guilherme");
+			return new UsuarioResponse(Status.SUCCESS, new Usuario("gavicentine", "Guilherme"));
 		}
 
-		return new Usuario("not found", "User not found");
+		return new UsuarioResponse(Status.SUCCESS, "");
 	}
 
 	/**
@@ -58,72 +161,7 @@ public class UsuarioController
 		return this.fetchAllUsuarios();
 	}
 	
-	
-	/**
-	 * Login.
-	 *
-	 * @param request the request
-	 * @return the response entity
-	 * @throws Exception the exception
-	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<Boolean> login(@RequestBody UsuarioRequest request) throws Exception
-	{
-		
-		System.out.println("### login");
-		
-		if (request.getUsuarioDTO() == null ||
-				request.getUsuarioDTO().getLogin() == null ||
-				request.getUsuarioDTO().getPassword() == null)
-		{
-			throw new BadRequestException();	
-		}
-		
-		if (request.getUsuarioDTO().getLogin().equals("gavicentine")) 
-		{
-			return new ResponseEntity<Boolean>(true, HttpStatus.OK);	
-		}
-		
-		
-		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
-	}
-	
-	
-	/**
-	 * Register.
-	 *
-	 * @param request the request
-	 * @return the response entity
-	 * @throws BadRequestException the bad request exception
-	 */
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<Boolean> register(@RequestBody UsuarioRequest request) throws BadRequestException
-	{
-		
-		System.out.println("### register");
-		
-		if (request.getUsuarioDTO() == null ||
-				request.getUsuarioDTO().getLogin() == null ||
-				request.getUsuarioDTO().getPassword() == null ||
-				request.getUsuarioDTO().getConfirmPassword() == null ||
-				request.getUsuarioDTO().getName() == null)
-		{
-			throw new BadRequestException("Missing fields.");
-		}
-		
-		
-		if (!request.getUsuarioDTO().getPassword().equals(
-				request.getUsuarioDTO().getConfirmPassword()))
-		{
-			throw new BadRequestException("Password and confirm password don't match.");
-		}
-		
-		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-		
-	}
-	
+
 
 	/**
 	 * Fetch all usuarios.
@@ -132,8 +170,7 @@ public class UsuarioController
 	 */
 	private List<Usuario> fetchAllUsuarios()
 	{
-
-		final List<Usuario> users = new ArrayList<Usuario>();
+		final List<Usuario> users = new ArrayList<>();
 		users.add(new Usuario("gavicentine", "Guilherme"));
 		users.add(new Usuario("vdvicentine", "Vinicius"));
 		users.add(new Usuario("mdvicentine", "Mateus"));

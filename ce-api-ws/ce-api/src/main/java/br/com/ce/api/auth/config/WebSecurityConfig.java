@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	private CredentialConfig credentialConfig;
 
 	/** The Constant SERVICES_IGNORED. */
-	private static final List<String> SERVICES_IGNORED = Arrays.asList("/auth/authenticate", "/auth/refresh");
+	private static final List<String> SERVICES_IGNORED = Arrays.asList("/auth/authenticate", "/auth/refresh", "/user/login", "/user/register");
 
 	/* (non-Javadoc)
 	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)
@@ -87,15 +87,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 
 			// Try fetch credentials
 			String token = request.getHeader(TOKEN_PARAM_NAME);
-			Claims credentials = tokenManager.fetchCredentials(token);
-			if (credentials == null)
+			String resultado;
+			if ((resultado = tokenManager.validate(token)) != null) 
 			{
-				// Token is invalid
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+				response.addHeader("message", resultado);
+				//response.get
 				RequestDispatcher dispatcher = request.getRequestDispatcher(FORBIDDEN);
 				dispatcher.forward(request, response);
 				return;
-			}
+			};
+			
+			//Claims credentials = tokenManager.fetchCredentials(token);
+//			if (credentials == null)
+//			{
+//				// Token is invalid
+//				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//				RequestDispatcher dispatcher = request.getRequestDispatcher(FORBIDDEN);
+//				dispatcher.forward(request, response);
+//				return;
+//			}
 
 			// Check if token is alive
 			if (tokenManager.isTokenExpired(token))
@@ -106,14 +117,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 			}
 
 			// Match roles from token with configuration
-			LOG.info("Service accessed: {} by credentials: {}", service, credentials);
-			if (!isValidCredentials(credentials))
-			{
-				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-				RequestDispatcher dispatcher = request.getRequestDispatcher(FORBIDDEN);
-				dispatcher.forward(request, response);
-				return;
-			}
+//			LOG.info("Service accessed: {} by credentials: {}", service, credentials);
+//			if (!isValidCredentials(credentials))
+//			{
+//				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//				RequestDispatcher dispatcher = request.getRequestDispatcher(FORBIDDEN);
+//				dispatcher.forward(request, response);
+//				return;
+//			}
 
 			// If all those validations is passed then call service requested
 			filterChain.doFilter(request, response);
