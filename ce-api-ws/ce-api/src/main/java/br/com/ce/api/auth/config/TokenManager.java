@@ -3,6 +3,7 @@ package br.com.ce.api.auth.config;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -31,15 +32,6 @@ public class TokenManager
 	
 	/** The Constant LOG. */
 	private static final Logger LOG = LoggerFactory.getLogger(TokenManager.class);
-	
-//	/** The Constant ROLES. */
-//	private static final String ROLES = "roles";
-//	
-//	/** The Constant CUSTOMER. */
-//	private static final String CUSTOMER = "customer";
-//	
-//	/** The Constant APP. */
-//	private static final String APP = "app";
 
 	/** The secret key factory. */
 	@Resource
@@ -95,6 +87,44 @@ public class TokenManager
 //		return generateToken(credentials);
 //	}
 
+	public Claims findClaims(String token)
+	{
+				
+		if ((token == null) || token.isEmpty())
+		{
+			//return "Token is null or empty.";
+			return null;
+		}
+
+		try
+		{
+			// Try parser token, if it can get then it is valid
+			Jws<Claims> claims = Jwts.parser()
+					.setSigningKeyResolver(secretKeyFactory.getSigningKeyResolver())
+					.parseClaimsJws(token);
+			
+			return claims.getBody();
+			
+		}
+		catch (SignatureException e)
+		{
+			LOG.error("Invalid token.", e);
+			//return "Invalid token.";
+		}
+		catch (ExpiredJwtException e)
+		{
+			LOG.error("Token is expired.", e);
+			//return "Token is expired.";
+		}
+		catch (JwtException e)
+		{
+			LOG.error("Token not valid.", e);
+			//return "Token not valid.";
+		}
+		
+		return null;
+		
+	}
 
 	public String validate(String token)
 	{
@@ -111,7 +141,9 @@ public class TokenManager
 					.setSigningKeyResolver(secretKeyFactory.getSigningKeyResolver())
 					.parseClaimsJws(token);
 			
-			return "";
+			//return claims.getBody();
+			
+			return null;
 		}
 		catch (SignatureException e)
 		{
@@ -173,37 +205,37 @@ public class TokenManager
 
 	}
 
-	/**
-	 * Checks if is token expired.
-	 *
-	 * @param token the token
-	 * @return the boolean
-	 */
-	public Boolean isTokenExpired(String token)
-	{
-		if ((token == null) || token.isEmpty())
-		{
-			LOG.error("Token is null or empty");
-			return false;
-		}
-
-		try
-		{
-			// Try parser token, if it can get then it is not expired
-			Jws<Claims> claims = Jwts.parser()
-					.setSigningKeyResolver(secretKeyFactory.getSigningKeyResolver())
-					.parseClaimsJws(token);
-
-			LOG.info("Credentials: {}", claims.getBody());
-
-			return false;
-		}
-		catch (ExpiredJwtException e)
-		{
-			LOG.error("Token is valid but it is expired", e);
-			return true;
-		}
-	}
+//	/**
+//	 * Checks if is token expired.
+//	 *
+//	 * @param token the token
+//	 * @return the boolean
+//	 */
+//	public Boolean isTokenExpired(String token)
+//	{
+//		if ((token == null) || token.isEmpty())
+//		{
+//			LOG.error("Token is null or empty");
+//			return false;
+//		}
+//
+//		try
+//		{
+//			// Try parser token, if it can get then it is not expired
+//			Jws<Claims> claims = Jwts.parser()
+//					.setSigningKeyResolver(secretKeyFactory.getSigningKeyResolver())
+//					.parseClaimsJws(token);
+//
+//			LOG.info("Credentials: {}", claims.getBody());
+//
+//			return false;
+//		}
+//		catch (ExpiredJwtException e)
+//		{
+//			LOG.error("Token is valid but it is expired", e);
+//			return true;
+//		}
+//	}
 
 	/**
 	 * Fetch credentials from expired token.

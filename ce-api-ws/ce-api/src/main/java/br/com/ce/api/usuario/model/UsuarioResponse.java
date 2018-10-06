@@ -3,12 +3,15 @@ package br.com.ce.api.usuario.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import br.com.ce.api.base.model.BaseResponse;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class UsuarioResponse.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioResponse extends BaseResponse {
 	
 	/** The usuarios. */
@@ -28,19 +31,8 @@ public class UsuarioResponse extends BaseResponse {
 	 * @param status the status
 	 * @param token the token
 	 */
-	public UsuarioResponse(Status status, String token) {
+	public UsuarioResponse(Status status, String token, Usuario usuario) {
 		super(status,token);
-	}
-
-	
-	/**
-	 * Instantiates a new usuario response.
-	 *
-	 * @param status the status
-	 * @param usuario the usuario
-	 */
-	public UsuarioResponse(Status status, Usuario usuario) {
-		super(status);
 		addUsuario(usuario);
 	}
 	

@@ -79,10 +79,10 @@ public class UsuarioController
 			claims.put(STR_NAME, request.getUsuario().getName());
 		
 			//return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-			return new UsuarioResponse(Status.SUCCESS, tokenManager.generate(claims));
+			return new UsuarioResponse(Status.SUCCESS, tokenManager.generate(claims), null);
 		}
 		
-		return new UsuarioResponse(Status.ERROR, "");
+		return new UsuarioResponse(Status.ERROR, null, null);
 	}	
 	
 	/**
@@ -124,7 +124,7 @@ public class UsuarioController
 		//usuarioService.save();
 		
 		//return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-		return new UsuarioResponse(Status.SUCCESS, "");
+		return new UsuarioResponse(Status.SUCCESS, null, null);
 		
 	}
 
@@ -139,13 +139,13 @@ public class UsuarioController
 	@ResponseBody
 	public UsuarioResponse findByLogin(@RequestParam(value = STR_LOGIN, required = true) String login)	
 	{
-		System.out.println("### find user by login");
+		LOG.debug("### find user by login: {} ",login);
 		if (login != null && login.equals("gavicentine")) 
 		{
-			return new UsuarioResponse(Status.SUCCESS, new Usuario("gavicentine", "Guilherme"));
+			return new UsuarioResponse(Status.SUCCESS, null, new Usuario("gavicentine", "Guilherme"));
 		}
 
-		return new UsuarioResponse(Status.SUCCESS, "");
+		return new UsuarioResponse(Status.SUCCESS, null, null);
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class UsuarioController
 	@ResponseBody	
 	public List<Usuario> findAll()
 	{
-		System.out.println("### find all users");
+		LOG.debug("### find all users");
 		return this.fetchAllUsuarios();
 	}
 	

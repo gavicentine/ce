@@ -86,17 +86,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 			}
 
 			// Try fetch credentials
-			String token = request.getHeader(TOKEN_PARAM_NAME);
-			String resultado;
-			if ((resultado = tokenManager.validate(token)) != null) 
+			String token = request.getHeader(TOKEN_PARAM_NAME);			
+			
+			Claims claims = tokenManager.findClaims(token);
+			if (claims == null)
 			{
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-				response.addHeader("message", resultado);
-				//response.get
+				response.addHeader("message", "Invalid Token.");				
 				RequestDispatcher dispatcher = request.getRequestDispatcher(FORBIDDEN);
 				dispatcher.forward(request, response);
 				return;
 			};
+			
+			printClaims(claims);
+			
+			//String resultado;
+			//if ((resultado = tokenManager.validate(token)) != null)
 			
 			//Claims credentials = tokenManager.fetchCredentials(token);
 //			if (credentials == null)
@@ -109,12 +114,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 //			}
 
 			// Check if token is alive
-			if (tokenManager.isTokenExpired(token))
-			{
-				RequestDispatcher dispatcher = request.getRequestDispatcher(EXPIRED);
-				dispatcher.forward(request, response);
-				return;
-			}
+//			if (tokenManager.isTokenExpired(token))
+//			{
+//				RequestDispatcher dispatcher = request.getRequestDispatcher(EXPIRED);
+//				dispatcher.forward(request, response);
+//				return;
+//			}
 
 			// Match roles from token with configuration
 //			LOG.info("Service accessed: {} by credentials: {}", service, credentials);
@@ -130,6 +135,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 			filterChain.doFilter(request, response);
 		}
 
+		
+		/**
+		 * Prints the claims.
+		 *
+		 * @param claims the claims
+		 */
+		private void printClaims(Claims claims)
+		{
+			String login = (String)claims.get("login");
+			String name = (String)claims.get("name");
+			
+			LOG.debug("Login: {} - Name: {}" ,login ,name);
+		}
 		/**
 		 * Checks if is valid credentials.
 		 *

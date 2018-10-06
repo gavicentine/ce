@@ -1,9 +1,12 @@
 package br.com.ce.api.base.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class BaseResponse.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)	
 public class BaseResponse {
 
 	/** The token. */
