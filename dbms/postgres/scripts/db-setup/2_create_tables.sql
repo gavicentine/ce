@@ -96,7 +96,8 @@ create table item
 create table conteudo
 (conteudo_num integer not null
 ,tit_conteudo character varying(200) NOT NULL
-,ds_conteudo character varying(4000) NOT NULL
+--,ds_conteudo character varying(4000) NOT NULL
+,ds_conteudo text not null
 ,cd_tipo character (1) NOT NULL -- 1 Mensagem , 2 Trecho do Livro, 
 ,cd_sit character(1) NOT NULL
 ,us_alt character varying(30) not null
