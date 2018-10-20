@@ -4,3 +4,14 @@
 /RemoteSystemsTempFiles
 /ce-api/target
 /ce-api/.settings
+/ce-framework/target
+/ce-framework/.settings
+/ce-framework/.classpath
+/ce-framework/.gitignore
+/ce-framework/.project
+/ce-interface/target
+/ce-interface/.settings
+/ce-interface/.classpath
+/ce-interface/.gitignore
+/ce-interface/.project
+
