@@ -8,4 +8,4 @@ echo "* You can change the default data by editing this file."
 echo "*************************************************************************"
 echo "Press enter to continue"; read line
 
-./db-setup/1_install_db.sh postgres postges ~/dvl/angular/ce/ce-ws/dbms/postgres/scripts /usr/lib/postgresql/10/bin
+./db-setup/1_install_db.sh postgres postges ~/dvl/projetos/ce/dbms/postgres/scripts /usr/lib/postgresql/10/bin
