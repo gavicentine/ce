@@ -43,7 +43,7 @@ public enum PessoaTipoEnum implements IIntegerEnum
 
 	/*
 	 * (non-Javadoc)
-	 * @see br.com.ezproc.common.model.IStringEnum#getValue()
+	 * @see br.com.ce.common.model.IStringEnum#getValue()
 	 */
 	/**
 	 * Gets the value.

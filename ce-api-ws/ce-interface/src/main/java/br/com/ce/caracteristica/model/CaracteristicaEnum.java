@@ -48,7 +48,7 @@ public enum CaracteristicaEnum implements IIntegerEnum
 
 	/*
 	 * (non-Javadoc)
-	 * @see br.com.ezproc.common.model.IStringEnum#getValue()
+	 * @see br.com.ce.common.model.IStringEnum#getValue()
 	 */
 	public Integer getValue()
 	{

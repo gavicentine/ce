@@ -243,7 +243,7 @@ public class Usuario extends UserContext
 
 	/*
 	 * (non-Javadoc)
-	 * @see br.com.ezproc.common.model.GenericModel#toString()
+	 * @see br.com.ce.common.model.GenericModel#toString()
 	 */
 	/**
 	 * To string.

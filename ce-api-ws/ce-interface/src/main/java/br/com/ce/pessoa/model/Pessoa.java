@@ -447,7 +447,7 @@ public abstract class Pessoa extends GenericModel
 	}
 
 	/* (non-Javadoc)
-	 * @see br.com.ezproc.common.model.GenericModel#toString()
+	 * @see br.com.ce.common.model.GenericModel#toString()
 	 */
 	@Override
 	public String toString()

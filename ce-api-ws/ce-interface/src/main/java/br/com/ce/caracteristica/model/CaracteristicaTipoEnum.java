@@ -37,7 +37,7 @@ public enum CaracteristicaTipoEnum implements IStringEnum
 
 	/*
 	 * (non-Javadoc)
-	 * @see br.com.ezproc.common.model.IStringEnum#getValue()
+	 * @see br.com.ce.common.model.IStringEnum#getValue()
 	 */
 	public String getValue()
 	{

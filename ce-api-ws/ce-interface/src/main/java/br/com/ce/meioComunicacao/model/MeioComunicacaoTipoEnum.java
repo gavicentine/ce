@@ -41,7 +41,7 @@ public enum MeioComunicacaoTipoEnum implements IIntegerEnum
 	}
 
 	/* (non-Javadoc)
-	 * @see br.com.ezproc.common.model.IIntegerEnum#getValue()
+	 * @see br.com.ce.common.model.IIntegerEnum#getValue()
 	 */
 	public Integer getValue()
 	{

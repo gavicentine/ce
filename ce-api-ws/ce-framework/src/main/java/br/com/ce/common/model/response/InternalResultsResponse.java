@@ -120,7 +120,7 @@ public class InternalResultsResponse<T> extends InternalResponse
 
 	/*
 	 * (non-Javadoc)
-	 * @see br.com.ezproc.common.model.response.InternalResponse#toString()
+	 * @see br.com.ce.common.model.response.InternalResponse#toString()
 	 */
 	@Override
 	public String toString()
