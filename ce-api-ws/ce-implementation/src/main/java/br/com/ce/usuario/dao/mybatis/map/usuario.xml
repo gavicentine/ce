@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UsuarioMap">
+
+    <!-- RESULT MAPS -->
+
+	<resultMap id="UsuarioSimpleResult" type="Usuario">
+		<result property="login" column="nm_login" />
+		<association property="pessoa" javaType="Pessoa" resultMap="PessoaMap.PessoaDiscriminatorSimpleResult"/>
+	</resultMap>
+
+	<resultMap id="UsuarioBaseResult" type="Usuario">
+		<result property="login" 					column="nm_login" />
+		<result property="senha" 					column="ds_senha" />
+		<result property="fraseSenha" 				column="ds_frase_senha" />
+		<result property="usuarioSituacaoEnumValue" column="cd_sit" />
+		<result property="usuarioTipoEnumValue" 	column="cd_tipo" />
+		<association property="perfilAcesso" javaType="PerfilAcesso" resultMap="PerfilAcessoMap.PerfilAcessoBaseResult"/>
+		<association property="pessoa" javaType="Pessoa" resultMap="PessoaMap.PessoaDiscriminatorResult"/>
+		<collection property="caracteristicas" javaType="ArrayList" column="nm_login" columnPrefix="login" select="CaracteristicaMap.selectByUsuario" />
+	</resultMap>
+
+	<resultMap id="UsuarioResult" type="Usuario" extends="UsuarioBaseResult">
+		<result property="usuarioAlteracao" column="us_alt" />
+		<result property="dataAlteracao" column="dt_alt" />
+	</resultMap>
+
+	<!--  INCLUDES  -->
+
+	<sql id="LikeBeginning"> like '%' ||</sql>
+	<sql id="LikeEnding"> || '%' </sql>
+
+	<!-- SQL COMMANDS -->
+
+	<insert id="insert" parameterType="Usuario">
+
+	    insert into usuario (nm_login
+							,ds_senha
+							,cd_sit
+							,cd_tipo
+							,ds_frase_senha
+							,perfil_num
+							,pessoa_num
+							,us_alt )
+	                values (lower(#{login, jdbcType=VARCHAR})
+	                       ,#{senha, jdbcType=VARCHAR}
+	                       ,#{usuarioSituacao.value, jdbcType=VARCHAR}
+						   ,#{usuarioTipo.value, jdbcType=VARCHAR}
+						   ,#{fraseSenha, jdbcType=VARCHAR}
+						   ,#{perfilAcesso.codigo, jdbcType=INTEGER}
+						   ,#{pessoa.codigo, jdbcType=INTEGER}
+	                       ,#{usuarioAlteracao, jdbcType=VARCHAR})
+
+	</insert>
+
+	<update id="update" parameterType="Usuario">
+
+		update usuario
+		   set us_alt         = #{usuarioAlteracao, jdbcType=VARCHAR}
+		   	  ,cd_sit         = coalesce(#{usuarioSituacao.value, jdbcType=VARCHAR},cd_sit)
+		      ,cd_tipo        = coalesce(#{usuarioTipo.value, jdbcType=VARCHAR},cd_tipo)
+		      ,perfil_num     = coalesce(#{perfilAcesso.codigo, jdbcType=INTEGER},perfil_num)
+		 where nm_login = #{login, jdbcType=VARCHAR}
+
+	</update>
+
+	<update id="updateSenha" parameterType="Usuario">
+
+		update usuario
+		   set us_alt         = #{usuarioAlteracao, jdbcType=VARCHAR}
+		      ,ds_frase_senha = #{fraseSenha, jdbcType=VARCHAR}
+		      ,ds_senha       = #{senha, jdbcType=VARCHAR}
+		 where nm_login = #{login, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="delete" parameterType="Usuario">
+
+		delete
+		  from usuario
+		 where nm_login = #{login, jdbcType=VARCHAR}
+
+	</delete>
+
+	<select id="select" parameterType="UsuarioRequest" resultMap="UsuarioResult">
+	    select nm_login
+	          ,cd_sit
+	          ,cd_tipo
+	          ,ds_senha
+	          ,ds_frase_senha
+	          ,perfil_num
+	          ,nm_perfil
+	          ,ds_perfil
+	          ,tppessoa_num
+	          ,pessoa_num
+	          ,nm_pessoa
+	          ,us_alt
+	          ,dt_alt
+		  from (
+			    select u.nm_login
+			          ,u.cd_sit
+			          ,u.cd_tipo
+			          ,u.ds_senha
+			          ,u.ds_frase_senha
+			          ,u.perfil_num
+			          ,pa.nm_perfil
+			          ,pa.ds_perfil
+			          ,p.tppessoa_num
+	                  ,p.pessoa_num
+	          		  ,p.nm_pessoa
+			          ,u.us_alt
+	                  ,u.dt_alt
+			          ,row_number() over(order by ${sortExpression}) as RowNumber
+			      from usuario u
+			          ,pessoa p
+			          ,perfil_acesso pa
+			     where u.pessoa_num = p.pessoa_num
+			       and u.perfil_num = pa.perfil_num
+
+			    <if test="usuarioSearch != null ">
+
+		         	<!-- chave não pode pesquisar com like -->
+				    <if test="usuarioSearch.login != null and !usuarioSearch.login.isEmpty()">
+			        	and u.nm_login = lower(#{usuarioSearch.login, jdbcType=VARCHAR})
+					</if>
+
+					<if test="usuarioSearch.nome != null and !usuarioSearch.nome.isEmpty()">
+			        	and upper(p.nm_pessoa) <include refid="LikeBeginning"/> upper(#{usuarioSearch.nome, jdbcType=VARCHAR}) <include refid="LikeEnding"/>
+					</if>
+
+					<if test="usuarioSearch.usuariosTipo != null and !usuarioSearch.usuariosTipo.isEmpty()">
+		        		and u.cd_tipo in
+			        	<foreach item="ut" index="index" collection="usuarioSearch.usuariosTipo"
+							open="(" separator="," close=")">
+							#{ut.value, jdbcType=VARCHAR}
+						</foreach>
+					</if>
+
+					<if test="usuarioSearch.usuariosSituacao != null and !usuarioSearch.usuariosSituacao.isEmpty()">
+		        		and u.cd_sit in
+			        	<foreach item="us" index="index" collection="usuarioSearch.usuariosSituacao"
+							open="(" separator="," close=")">
+							#{us.value, jdbcType=VARCHAR}
+						</foreach>
+					</if>
+
+					<if test="usuarioSearch.perfisAcesso != null and !usuarioSearch.perfisAcesso.isEmpty()">
+		        		and pa.perfil_num in
+			        	<foreach item="pa" index="index" collection="usuarioSearch.perfisAcesso"
+							open="(" separator="," close=")">
+							#{pa.codigo, jdbcType=INTEGER}
+						</foreach>
+					</if>
+
+					<if test="usuarioSearch.pessoaCodigo != null">
+						and u.pessoa_num = #{usuarioSearch.pessoaCodigo, jdbcType=INTEGER}
+					</if>
+
+				</if>
+
+			   ) list
+		<choose>
+			<when test="pageSize != null and pageSize > 0">
+				where RowNumber between #{startRow}+1 and (#{startRow} + #{pageSize})
+			</when>
+			<otherwise>
+				where RowNumber between 1 and RowNumber
+			    order by RowNumber
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>

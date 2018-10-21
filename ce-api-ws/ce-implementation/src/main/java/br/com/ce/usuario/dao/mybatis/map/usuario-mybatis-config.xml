@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="Menu" 			type="br.com.ce.usuario.model.Menu"/>
+		<typeAlias alias="PerfilAcesso" 	type="br.com.ce.usuario.model.PerfilAcesso"/>
+		<typeAlias alias="LogAcesso" 	    type="br.com.ce.usuario.model.LogAcesso"/>
+		<typeAlias alias="Usuario" 			type="br.com.ce.usuario.model.Usuario"/>
+		<typeAlias alias="LogAcessoSearch" 	type="br.com.ce.usuario.model.LogAcessoSearch"/>
+
+		<typeAlias alias="Pessoa" 			type="br.com.ce.pessoa.model.Pessoa"/>
+		<typeAlias alias="PessoaSearch" 	type="br.com.ce.pessoa.model.PessoaSearch"/>
+		<typeAlias alias="PessoaRequest" 	type="br.com.ce.pessoa.model.request.PessoaRequest"/>
+		<typeAlias alias="Funcionario" 		type="br.com.ce.pessoa.model.Funcionario"/>
+		<typeAlias alias="Cliente" 			type="br.com.ce.pessoa.model.Cliente"/>
+		<typeAlias alias="Advogado" 		type="br.com.ce.pessoa.model.Advogado"/>
+		<typeAlias alias="Empresa" 			type="br.com.ce.pessoa.model.Empresa"/>
+		<typeAlias alias="EmpresaFaturamento" type="br.com.ce.pessoa.model.EmpresaFaturamento"/>
+		<typeAlias alias="Funcao" 			type="br.com.ce.pessoa.model.Funcao"/>
+		<typeAlias alias="FuncaoRequest" 	type="br.com.ce.pessoa.model.request.FuncaoRequest"/>
+
+		<typeAlias alias="MeioComunicacao" 			type="br.com.ce.meioComunicacao.model.MeioComunicacao"/>
+		<typeAlias alias="MeioComunicacaoRequest" 	type="br.com.ce.meioComunicacao.model.request.MeioComunicacaoRequest" />
+
+		<typeAlias alias="Cidade" 				type="br.com.ce.endereco.model.Cidade"/>
+		<typeAlias alias="Bairro" 				type="br.com.ce.endereco.model.Bairro"/>
+		<typeAlias alias="UF" 					type="br.com.ce.endereco.model.UF"/>
+		<typeAlias alias="TipoLogradouro" 		type="br.com.ce.endereco.model.TipoLogradouro"/>
+		<typeAlias alias="TituloLogradouro" 	type="br.com.ce.endereco.model.TituloLogradouro"/>
+		<typeAlias alias="Logradouro" 			type="br.com.ce.endereco.model.Logradouro"/>
+		<typeAlias alias="Endereco" 			type="br.com.ce.endereco.model.Endereco"/>
+		<typeAlias alias="CidadeRequest" 		type="br.com.ce.endereco.model.request.CidadeRequest"/>
+		<typeAlias alias="EnderecoRequest" 		type="br.com.ce.endereco.model.request.EnderecoRequest"/>
+
+		<typeAlias alias="Observacao" 			type="br.com.ce.pessoa.model.Observacao"/>
+		<typeAlias alias="MenuRequest" 			type="br.com.ce.usuario.model.request.MenuRequest" />
+		<typeAlias alias="UsuarioRequest" 		type="br.com.ce.usuario.model.request.UsuarioRequest" />
+		<typeAlias alias="LogAcessoRequest" 	type="br.com.ce.usuario.model.request.LogAcessoRequest" />
+
+		<typeAlias alias="Caracteristica" 			type="br.com.ce.caracteristica.model.Caracteristica"/>
+		<typeAlias alias="CaracteristicaRequest" 	type="br.com.ce.caracteristica.model.request.CaracteristicaRequest"/>
+
+		<typeAlias alias="SistemaParametro" 		type="br.com.ce.usuario.model.SistemaParametro"/>
+		<typeAlias alias="SistemaParametroRequest" 	type="br.com.ce.usuario.model.request.SistemaParametroRequest"/>
+
+	</typeAliases>
+
+	<mappers>
+    	<mapper resource="br/com/ezproc/usuario/dao/mybatis/map/menu.xml"/>
+    	<mapper resource="br/com/ezproc/usuario/dao/mybatis/map/perfilAcesso.xml"/>
+    	<mapper resource="br/com/ezproc/usuario/dao/mybatis/map/usuario.xml"/>
+    	<mapper resource="br/com/ezproc/usuario/dao/mybatis/map/logAcesso.xml" />
+    	<mapper resource="br/com/ezproc/usuario/dao/mybatis/map/sistemaParametro.xml"/>
+
+    	<mapper resource="br/com/ezproc/pessoa/dao/mybatis/map/pessoa.xml"/>
+    	<mapper resource="br/com/ezproc/meioComunicacao/dao/mybatis/map/meioComunicacao.xml"/>
+
+    	<mapper resource="br/com/ezproc/endereco/dao/mybatis/map/endereco.xml"/>
+    	<mapper resource="br/com/ezproc/endereco/dao/mybatis/map/logradouro.xml"/>
+    	<mapper resource="br/com/ezproc/endereco/dao/mybatis/map/tituloLogradouro.xml"/>
+    	<mapper resource="br/com/ezproc/endereco/dao/mybatis/map/tipoLogradouro.xml"/>
+    	<mapper resource="br/com/ezproc/endereco/dao/mybatis/map/cidade.xml"/>
+    	<mapper resource="br/com/ezproc/endereco/dao/mybatis/map/bairro.xml"/>
+
+    	<mapper resource="br/com/ezproc/caracteristica/dao/mybatis/map/caracteristica.xml"/>
+
+
+
+    </mappers>
+
+</configuration>
